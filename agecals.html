@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <main class="text-center w-full">
+        <h1 class="text-5xl m-5">Age Calculator</h1>
+        <div class="infos flex w-full flex justify-center gap-[20px] m-5 ">
+            <div class="info rounded-full bg-black w-[300px] h-[300px] text-white flex items-center justify-center">
+                0 Years
+            </div>
+            <div class="info rounded-full bg-black w-[300px] h-[300px] text-white flex items-center justify-center">
+                0 Months
+            </div>
+            <div class="info rounded-full bg-black w-[300px] h-[300px] text-white flex items-center justify-center">
+                0 Days
+            </div>
+        </div>
+        <div class="userinfo p-4 bg-black ">
+            <input type="date" class="inp p-1 rounded">
+            <button onclick="calc()" class="rounded p-1 bg-white">Calculate age</button>
+        </div>
+    </main>
+
+    <script>
+        let currentDate = new Date()
+        let infos = document.querySelectorAll(".info")
+
+        function calc() {
+            const dateInput = new Date(document.querySelector(".inp").value)
+            const timeDifference = currentDate - dateInput;
+            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            
+            const pastyear= Math.floor(daysPassed/365)
+            const pastmonths=Math.floor((daysPassed-pastyear*365)/30)
+            const pastdays=(daysPassed-(pastyear*365)-(pastmonths*30))
+            console.log(pastdays);
+            if(pastyear<0) {
+                alert("You have not birth yet")
+                return false
+            }
+            infos[0].innerHTML = `${pastyear} Years`
+            infos[1].innerHTML = `${pastmonths} Months`
+            infos[2].innerHTML = `${pastdays} Days`
+
+        
+        }
+    </script>
+</body>
+
+</html>
